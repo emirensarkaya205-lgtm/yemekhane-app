@@ -1,0 +1,16 @@
+{
+  "date": "06.10.2026",
+  "meal_type": "Öğle Yemeği",
+  "total_calories": 845,
+  "foods": [
+    {"name": "Mercimek Çorbası", "calories": 140},
+    {"name": "Orman Kebabı", "calories": 380},
+    {"name": "Pirinç Pilavı", "calories": 250},
+    {"name": "Mevsim Salata", "calories": 75}
+  ],
+  "stats": {
+    "rating_average": 4.5,
+    "rating_count": 42,
+    "crowd": "Normal"
+  }
+}
