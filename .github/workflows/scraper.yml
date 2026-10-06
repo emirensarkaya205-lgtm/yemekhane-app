@@ -1,0 +1,37 @@
+name: Yemekhane Veri Botu
+
+on:
+  schedule:
+    # Hafta içi her sabah TSİ 08:30 (UTC 05:30)
+    - cron: '30 5 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-menu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Depoyu Al
+        uses: actions/checkout@v4
+
+      - name: Python 3.11 Kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Kütüphaneleri Yükle
+        run: |
+          pip install -r requirements.txt
+
+      - name: Menüyü Kazı
+        run: |
+          python scraper.py
+
+      - name: Dosyayı Repoya Kaydet
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/menu.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: Günlük menü güncellendi" && git push)
